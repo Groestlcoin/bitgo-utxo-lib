@@ -1,6 +1,5 @@
 var Buffer = require('safe-buffer').Buffer
 var BufferWriter = require('./bufferWriter')
-var bcrypto = require('./crypto')
 var bscript = require('./script')
 var bufferutils = require('./bufferutils')
 var coins = require('./coins')

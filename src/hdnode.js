@@ -1,10 +1,10 @@
 var Buffer = require('safe-buffer').Buffer
-var base58check = require('bs58check')
 var bcrypto = require('./crypto')
 var createHmac = require('create-hmac')
 var typeforce = require('typeforce')
 var types = require('./types')
 var NETWORKS = require('./networks')
+var coins = require('./coins')
 
 var BigInteger = require('bigi')
 var ECPair = require('./ecpair')
@@ -58,10 +58,15 @@ HDNode.fromSeedHex = function (hex, network) {
 }
 
 HDNode.fromBase58 = function (string, networks) {
-  if (Array.isArray(networks)) {
-    networks = networks[0] || NETWORKS.bitcoin
+  var buffer
+  var isGroestlChecksum = false
+  try {
+    buffer = bs58checkBase(bcrypto.hash256).decode(string)
+  } catch (e) {
+    if (e.message !== 'Invalid checksum') throw e
+    buffer = bs58checkBase(bcrypto.groestl).decode(string)
+    isGroestlChecksum = true
   }
-  var buffer = bs58checkBase(networks.hashFunctions.address).decode(string)
   if (buffer.length !== 78) throw new Error('Invalid buffer length')
 
   // 4 bytes: version bytes
@@ -71,8 +76,8 @@ HDNode.fromBase58 = function (string, networks) {
   // list of networks?
   if (Array.isArray(networks)) {
     network = networks.filter(function (x) {
-      return version === x.bip32.private ||
-             version === x.bip32.public
+      return (version === x.bip32.private ||
+        version === x.bip32.public) && (isGroestlChecksum ? x.coin === coins.GRS : x.coin !== coins.GRS)
     }).pop()
 
     if (!network) throw new Error('Unknown network version')

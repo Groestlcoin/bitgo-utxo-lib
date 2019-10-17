@@ -147,6 +147,32 @@ module.exports = {
     forkId: 0x4F, /* 79 */
     hashFunctions: hashFunctions
   },
+  litecoin: {
+    messagePrefix: '\x19Litecoin Signed Message:\n',
+    bech32: 'ltc',
+    bip32: {
+      public: 0x019da462,
+      private: 0x019d9cfe
+    },
+    pubKeyHash: 0x30,
+    scriptHash: 0x32,
+    wif: 0xb0,
+    coin: coins.LTC,
+    hashFunctions: hashFunctions
+  },
+  litecoinTest: {
+    messagePrefix: '\x19Litecoin Signed Message:\n',
+    bech32: 'tltc',
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4
+    },
+    pubKeyHash: 0x6f,
+    scriptHash: 0x3a,
+    wif: 0xb0,
+    coin: coins.LTC,
+    hashFunctions: hashFunctions
+  },
   bitcoin: {
     messagePrefix: '\x18Bitcoin Signed Message:\n',
     bech32: 'bc',
@@ -171,18 +197,6 @@ module.exports = {
     scriptHash: 0xc4,
     wif: 0xef,
     coin: coins.BTC,
-    hashFunctions: hashFunctions
-  },
-  litecoin: {
-    messagePrefix: '\x19Litecoin Signed Message:\n',
-    bip32: {
-      public: 0x019da462,
-      private: 0x019d9cfe
-    },
-    pubKeyHash: 0x30,
-    scriptHash: 0x32,
-    wif: 0xb0,
-    coin: coins.LTC,
     hashFunctions: hashFunctions
   },
   groestlcoin: {

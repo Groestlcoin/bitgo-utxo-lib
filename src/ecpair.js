@@ -5,6 +5,8 @@ var randomBytes = require('randombytes')
 var typeforce = require('typeforce')
 var types = require('./types')
 var wif = require('wif')
+var wifgrs = require('wifgrs')
+var coins = require('./coins')
 
 var NETWORKS = require('./networks')
 var BigInteger = require('bigi')
@@ -60,13 +62,21 @@ ECPair.fromPublicKeyBuffer = function (buffer, network) {
 }
 
 ECPair.fromWIF = function (string, network) {
-  var decoded = wif.decode(string)
+  var decoded
+  var isGroestlcoin = false
+  try {
+    decoded = wif.decode(string)
+  } catch (e) {
+    if (e.message !== 'Invalid checksum') throw e
+    decoded = wifgrs.decode(string)
+    isGroestlcoin = true
+  }
   var version = decoded.version
 
   // list of networks?
   if (types.Array(network)) {
     network = network.filter(function (x) {
-      return version === x.wif
+      return (version === x.wif) && (isGroestlcoin ? x.coin === coins.GRS : x.coin !== coins.GRS)
     }).pop()  // We should not use pop since it depends on the order of the networks for the same wif
 
     if (!network) throw new Error('Unknown network version')
@@ -142,6 +152,10 @@ ECPair.prototype.sign = function (hash) {
 
 ECPair.prototype.toWIF = function () {
   if (!this.d) throw new Error('Missing private key')
+
+  if (coins.isGroestlcoin(this.network)) {
+    return wifgrs.encode(this.network.wif, this.d.toBuffer(32), this.compressed)
+  }
 
   return wif.encode(this.network.wif, this.d.toBuffer(32), this.compressed)
 }
