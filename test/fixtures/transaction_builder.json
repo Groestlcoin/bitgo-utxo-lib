@@ -402,6 +402,60 @@
         ]
       },
       {
+        "description": "Transaction w/ P2PKH -> P2PKH",
+        "network": "groestlcoin",
+        "version": 2,
+        "txHex": "0200000001ff37cedb95b65c58388b5344c07a3452c037ccad9bb7bb99b0547c042a2aaae6010000006a47304402200d8d659dfe103591f83097e247eb47fbc1eacc7e897b3626c51841fbc6d019c6022038d4ea8ba09e9444f968201cf9a5cac19ff3c5f2ea516f092638e4600fb9903d012103439bed6be419df8e8cea1fd6d85f268ed3ac823edf5117e16e1a555a15ea52a1fdffffff0194879800000000001976a9140dfd79754cf3cded1185c76c188cef30562dd64688ac25b92a00",
+        "inputs": [
+          {
+            "txId": "e6aa2a2a047c54b099bbb79badcc37c052347ac044538b38585cb695dbce37ff",
+            "vout": 1,
+            "prevTxScript": "OP_DUP OP_HASH160 ef5ad4e7f57ded5cba6b46253509da6d9276c782 OP_EQUALVERIFY OP_CHECKSIG",
+            "signs": [
+              {
+                "keyPair": "L1YR1YXncSs8SbkLn7RMRxUTDD5qUrQSVU3zL2ADxkjDxKFeCGHw",
+                "value": 10000000
+              }
+            ],
+            "sequence": 4294967293
+          }
+        ],
+        "outputs": [
+          {
+            "script": "OP_DUP OP_HASH160 0dfd79754cf3cded1185c76c188cef30562dd646 OP_EQUALVERIFY OP_CHECKSIG",
+            "value": 9996180
+          }
+        ],
+        "locktime": 2799909
+      },
+      {
+        "description": "Transaction w/ P2WPKH -> P2WPKH",
+        "network": "groestlcoin",
+        "version": 2,
+        "txHex": "02000000000101fa44fb9c3e2677286f3be38f3702a270c271ed712211f328427e520db0a70b480100000000fdffffff01f28c1f01000000001600142da1e7fd3ec09feafe73884a94924931eef4c7a70247304402205d5e6af8cf5b40d81e11d8b671d1a9a70b1bdf98360720ccb56af469f65c3e5d02204b4c1b3e0af0f2864283bd550e4c660f1b5c9489c204b5d771e963b8bc20717d0121021bf4beb26c517c24a595e8bbcf171a07bcb0aca3867f0c823ad7cf00b6514d9f15b92a00",
+        "inputs": [
+          {
+            "txId": "480ba7b00d527e4228f3112271ed71c270a202378fe33b6f2877263e9cfb44fa",
+            "vout": 1,
+            "prevTxScript": "OP_0 d1ebc5efea0fd718b3d697cc2d793b91440616ba",
+            "signs": [
+              {
+                "keyPair": "L2SWkid4Dzjr3UX7n24j72jEhVkF3aYdatWYC1rJdYHB1maUQebD",
+                "value": 18847114
+              }
+            ],
+            "sequence": 4294967293
+          }
+        ],
+        "outputs": [
+          {
+            "script": "OP_0 2da1e7fd3ec09feafe73884a94924931eef4c7a7",
+            "value": 18844914
+          }
+        ],
+        "locktime": 2799893
+      },
+      {
         "description": "Transaction w/ P2WSH|P2PK -> P2PKH",
         "txHex": "010000000001014533a3bc1e039bd787656068e135aaee10aee95a64776bfc047ee6a7c1ebdd2f0000000000ffffffff0160ea0000000000001976a914851a33a5ef0d4279bd5854949174e2c65b1d450088ac02473044022039725bb7291a14dd182dafdeaf3ea0d5c05c34f4617ccbaa46522ca913995c4e02203b170d072ed2e489e7424ad96d8fa888deb530be2d4c5d9aaddf111a7efdb2d3012321038de63cf582d058a399a176825c045672d5ff8ea25b64d28d4375dcdb14c02b2bac00000000",
         "inputs": [
@@ -422,6 +476,32 @@
           {
             "script": "OP_DUP OP_HASH160 851a33a5ef0d4279bd5854949174e2c65b1d4500 OP_EQUALVERIFY OP_CHECKSIG",
             "value": 60000
+          }
+        ]
+      },
+      {
+        "description": "Transaction w/ P2WSH|P2PK -> P2WSH",
+        "network": "groestlcoin",
+        "version:": 2,
+        "txHex": "02000000000101f2cd1eb4cbce6bd12d63e35314cfd4c64f06c5dac620b0c6f3fb0799a52e6e780000000017160014c65bbeab1f22cd08062bf30b4d9b75f23f621359fdffffff01fb5101000000000017a914247521a8d1aa867aa2fd1d331e84174b2a4f77ee870247304402207bb991ea718205ca9829c08a6928eb03601ec546d90d7fcf0fb355f134117c350220521878ba7dcca2dcf83e12a32996d58fe12ef544b828ab2554066eac535ccd0d0121039c21f568826e286c40149d3a786123e6c4ba707bc814b6ec9692c659261f659d3db92a00",
+        "inputs": [
+          {
+            "txId": "786e2ea59907fbf3c6b020c6dac5064fc6d4cf1453e3632dd16bcecbb41ecdf2",
+            "vout": 0,
+            "prevTxScript": "OP_HASH160 01414cd407cac8c3e14983efa16164f648ab01ab OP_EQUAL",
+            "signs": [
+              {
+                "keyPair": "KxecXskU5SUygPcva7s2bRMVs47PHC4BqtSnwAfXAg7Bas5a9tXb",
+                "witnessScript": "039c21f568826e286c40149d3a786123e6c4ba707bc814b6ec9692c659261f659d OP_CHECKSIG",
+                "value": 90732
+              }
+            ]
+          }
+        ],
+        "outputs": [
+          {
+            "script": "OP_HASH160 247521a8d1aa867aa2fd1d331e84174b2a4f77ee OP_EQUAL",
+            "value": 86523
           }
         ]
       },
